@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@e2b/code-interpreter": "^1.5.1",
     "@inngest/agent-kit": "^0.9.0",
     "@prisma/client": "^6.11.1",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-slot": "^1.2.3",
     "@tanstack/react-query": "^5.83.0",
     "@trpc/client": "^11.4.3",
