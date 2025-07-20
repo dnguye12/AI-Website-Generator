@@ -36,9 +36,16 @@ const ProjectForm = () => {
                 trpc.projects.getMany.queryOptions()
             )
             router.push(`/projects/${data.id}`)
+
+            queryClient.invalidateQueries(
+                trpc.usages.status.queryOptions()
+            )
         },
         onError: (error) => {
             toast.error(error.message)
+            if (error.data?.code === "TOO_MANY_REQUESTS") {
+                router.push("/pricing")
+            }
         }
     }))
 
