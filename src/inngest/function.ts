@@ -19,6 +19,7 @@ export const codeAgentFunction = inngest.createFunction(
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("ai-we-test")
+      await sandbox.setTimeout(1_800_000)
       return sandbox.sandboxId
     })
 
@@ -31,7 +32,8 @@ export const codeAgentFunction = inngest.createFunction(
         },
         orderBy: {
           createdAt: "desc"
-        }
+        },
+        take: 5
       })
 
       for (const message of messages) {
@@ -42,7 +44,7 @@ export const codeAgentFunction = inngest.createFunction(
         })
       }
 
-      return formattedMessages
+      return formattedMessages.reverse()
     })
 
     const state = createState<AgentState>(
@@ -198,7 +200,7 @@ export const codeAgentFunction = inngest.createFunction(
       })
     })
 
-    const reponseGenerator = createAgent<AgentState>({
+    const responseGenerator = createAgent<AgentState>({
       name: "response-generator",
       description: "A response generator",
       system: RESPONSE_PROMPT,
@@ -208,7 +210,7 @@ export const codeAgentFunction = inngest.createFunction(
     })
 
     const { output: fragmentTitleOutput } = await fragmentTitleGenerator.run(result.state.data.summary)
-    const { output: responseOutput } = await reponseGenerator.run(result.state.data.summary)
+    const { output: responseOutput } = await responseGenerator.run(result.state.data.summary)
 
     const generateFragmentTitle = (): string => {
       if (fragmentTitleOutput[0].type !== "text") {
