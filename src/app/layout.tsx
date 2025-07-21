@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Website Generator",
   description: "Full stack AI Website Generator with NextJS, Express, PostgreSQL",
+  icons: {
+    icon: "/logo-dark.svg"
+  }
 };
 
 export default function RootLayout({
