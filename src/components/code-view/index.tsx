@@ -15,10 +15,10 @@ interface CodeViewProps {
 const CodeView = ({ code, lang }: CodeViewProps) => {
     useEffect(() => {
         Prism.highlightAll()
-    }, [])
+    }, [code, lang])
 
     return (
-        <pre className="p-2 bg-transparent border-none rounded-none m-0 text-xs">
+        <pre className="p-2 bg-transparent border-none rounded-none m-0 text-xs overflow-y-scroll whitespace-pre max-h-[calc(100vh-101px)]">
             <code className={`language-${lang}`}>
                 {code}
             </code>

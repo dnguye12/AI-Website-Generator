@@ -98,7 +98,7 @@ const FileExplorer = ({ files }: FileExplorerProps) => {
 
     const handleFileSelect = useCallback((filePath: string) => {
         if (files[filePath]) {
-            setSelectedFile(files[filePath])
+            setSelectedFile(filePath)
         }
     }, [files])
 

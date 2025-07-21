@@ -46,6 +46,9 @@ const ProjectForm = () => {
             if (error.data?.code === "TOO_MANY_REQUESTS") {
                 router.push("/pricing")
             }
+            if(error.data?.code === "UNAUTHORIZED") {
+                router.push("/sign-in")
+            }
         }
     }))
 
@@ -110,7 +113,7 @@ const ProjectForm = () => {
                             disabled={isDisabled}
                             className={cn(
                                 "size-8 rounded-full",
-                                isDisabled && "bg-muted-foreground borrder"
+                                isDisabled && "bg-muted-foreground border"
                             )}>
                             {
                                 isPending
