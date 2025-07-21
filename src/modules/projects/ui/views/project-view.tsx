@@ -36,7 +36,7 @@ const ProjectView = ({ projectId }: ProjectViewProps) => {
                 <ResizablePanel defaultSize={35} minSize={20} className="flex flex-col min-h-0">
                     <ErrorBoundary fallback={<p>Error</p>}>
                         <Suspense fallback={<p>...Loading project</p>}>
-                            <ProjectHeader projectId={projectId} />
+                            <ProjectHeader />
                         </Suspense>
                     </ErrorBoundary>
                     <ErrorBoundary fallback={<p>Error</p>}>

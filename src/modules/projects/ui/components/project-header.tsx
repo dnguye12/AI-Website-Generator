@@ -1,5 +1,3 @@
-import { useTRPC } from "@/trpc/client";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -19,13 +17,7 @@ import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
-interface ProjectHeaderProps {
-    projectId: string
-}
-
-const ProjectHeader = ({ projectId }: ProjectHeaderProps) => {
-    const trpc = useTRPC()
-    const { data: project } = useSuspenseQuery(trpc.projects.getOne.queryOptions({ projectId }))
+const ProjectHeader = () => {
 
     const { setTheme, theme } = useTheme()
 
